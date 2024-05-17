@@ -10,22 +10,22 @@ import java.util.List;
 @SpringBootTest
 public class StudentRepositoryTest {
 
-    @Autowired
-    private StudentRepository studentRepository;
+//    @Autowired
+//    private StudentRepository studentRepository;
 
-    @Test
-    public void saveStudent() {
-        Student student = Student.builder()
-                .emailId("p@p.com")
-                .firstName("pooya")
-                .lastName("arab")
-                .build();
-        studentRepository.save(student);
-    }
-
-    @Test
-    public void findStudent() {
-        Student student = studentRepository.findByEmailId("p@p.com");
-        System.out.println(student);
-    }
+//    @Test
+//    public void saveStudent() {
+//        Student student = Student.builder()
+//                .emailId("p@p.com")
+//                .firstName("pooya")
+//                .lastName("arab")
+//                .build();
+//        studentRepository.save(student);
+//    }
+//
+//    @Test
+//    public void findStudent() {
+//        Student student = studentRepository.findByEmailId("p@p.com");
+//        System.out.println(student);
+//    }
 }

@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -36,6 +38,10 @@ public class Student {
     )
     private String emailId;
 
+    @ManyToOne
+    @JoinColumn(name = "teacher_id")
+    private Teacher teacher;
 
-
+    @ManyToMany(mappedBy = "student")
+    private List<Course> courses;
 }
