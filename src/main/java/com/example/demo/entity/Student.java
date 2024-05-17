@@ -38,10 +38,16 @@ public class Student {
     )
     private String emailId;
 
-    @ManyToOne
-    @JoinColumn(name = "teacher_id")
-    private Teacher teacher;
+    @ManyToMany
+    @JoinTable(
+            name = "student_teacher",
+            joinColumns = @JoinColumn(name = "student_id"),
+            inverseJoinColumns = @JoinColumn(name = "teacher_id")
+    )
+    private List<Teacher> teachers;
 
-    @ManyToMany(mappedBy = "student")
+    @ManyToMany(mappedBy = "students")
     private List<Course> courses;
+
+
 }

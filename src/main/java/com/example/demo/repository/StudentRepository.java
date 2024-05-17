@@ -11,4 +11,6 @@ import java.util.List;
 public interface StudentRepository extends JpaRepository<Student, Long> {
 
     public Student findByEmailId(String emailId);
+
+
 }

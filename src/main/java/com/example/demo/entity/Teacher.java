@@ -37,6 +37,9 @@ public class Teacher {
     )
     private String email;
 
-    @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(mappedBy = "teacher")
+    private Course course;
+
+    @ManyToMany(mappedBy = "teachers")
     private List<Student> students;
 }

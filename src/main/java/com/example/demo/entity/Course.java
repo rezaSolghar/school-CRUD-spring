@@ -29,17 +29,15 @@ public class Course {
     private Long id;
     private String name;
 
-    @OneToOne(
-            cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER)
-    @JoinColumn(name = "teacher_id")
+    @OneToOne
+    @JoinColumn(name = "teacher_id", unique = true)
     private Teacher teacher;
 
     @ManyToMany
     @JoinTable(
-            name = "course_student",
+            name = "student_course",
             joinColumns = @JoinColumn(name = "course_id"),
             inverseJoinColumns = @JoinColumn(name = "student_id")
     )
-    private List<Student> student;
+    private List<Student> students;
 }
