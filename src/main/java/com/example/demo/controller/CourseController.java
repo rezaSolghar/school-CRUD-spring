@@ -1,7 +1,9 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.AddTeacherToCourseRequest;
 import com.example.demo.entity.Course;
 import com.example.demo.error.CourseNotFoundException;
+import com.example.demo.error.TeacherNotFoundException;
 import com.example.demo.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +28,7 @@ public class CourseController {
     }
 
     @GetMapping("/course/{name}")
-    public Course getCourseByName(@PathVariable("name") Long courseName) {
+    public Course getCourseByName(@PathVariable("name") String courseName) {
         return courseService.getCourseByName(courseName);
     }
 
@@ -45,5 +47,11 @@ public class CourseController {
     public Course updateCourseById(@PathVariable("id") Long courseId
             , @RequestBody Course course) throws CourseNotFoundException {
         return courseService.updateCourseById(courseId, course);
+    }
+
+    @PostMapping("course/addTeacher")
+    public Course addingTeacherToCourse(@RequestBody AddTeacherToCourseRequest request)
+            throws TeacherNotFoundException, CourseNotFoundException {
+        return courseService.addingTeacherToCourse(request.getCourseName(), request.getTeacherName());
     }
 }

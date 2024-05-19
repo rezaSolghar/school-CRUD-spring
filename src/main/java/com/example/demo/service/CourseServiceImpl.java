@@ -1,10 +1,11 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.Course;
-import com.example.demo.entity.Student;
+import com.example.demo.entity.Teacher;
 import com.example.demo.error.CourseNotFoundException;
-import com.example.demo.error.StudentNotFoundException;
+import com.example.demo.error.TeacherNotFoundException;
 import com.example.demo.repository.CourseRepository;
+import com.example.demo.repository.TeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,8 @@ public class CourseServiceImpl implements CourseService{
 
     @Autowired
     private CourseRepository courseRepository;
+    @Autowired
+    private TeacherRepository teacherRepository;
 
 
     @Override
@@ -29,8 +32,10 @@ public class CourseServiceImpl implements CourseService{
         return courseRepository.findById(courseId);
     }
 
+
+
     @Override
-    public Course getCourseByName(Long courseName) {
+    public Course getCourseByName(String courseName) {
         return courseRepository.findByName(courseName);
     }
 
@@ -53,4 +58,23 @@ public class CourseServiceImpl implements CourseService{
         }
         return courseRepository.save(courDB);
     }
+
+    @Override
+    public Course addingTeacherToCourse(String courseName, String teacherName) throws TeacherNotFoundException, CourseNotFoundException {
+        Teacher teacher = teacherRepository.findByName(teacherName);
+        if (teacher == null) {
+            throw new TeacherNotFoundException("Teacher not found with name: " + teacherName);
+        }
+        Course course = courseRepository.findByName(courseName);
+        if (course == null) {
+            throw new CourseNotFoundException("Course not found with name: " + courseName);
+        }
+        course.setTeacher(teacher);
+
+        return courseRepository.save(course);
+
+
+    }
+
+
 }
