@@ -24,7 +24,7 @@ public class MyUserDetailService implements UserDetailsService {
         return org.springframework.security.core.userdetails.User.builder()
                 .username(user.getUsername())
                 .password(user.getPassword())
-                .roles(user.getRole().name()) // Assuming the role is a single enum, converted to string
+                .roles(user.getRole().name())
                 .build();
     }
 }

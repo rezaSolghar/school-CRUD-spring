@@ -2,7 +2,7 @@ package com.example.demo.service;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import lombok.Getter;
@@ -87,4 +87,4 @@ public class JwtService {
         return Keys.hmacShaKeyFor(keyBytes);
     }
 }
-}
+
